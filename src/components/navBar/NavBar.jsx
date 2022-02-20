@@ -9,7 +9,7 @@ const NavBar = () => {
       <div className="header">
         <p>Welcome To My Moves</p>
         <p>
-          <Link to="/EnterMove">Enter Move U Want To Add</Link>
+          <Link to="/EnterMove"> Add Move</Link>
         </p>
       </div>
     </div>

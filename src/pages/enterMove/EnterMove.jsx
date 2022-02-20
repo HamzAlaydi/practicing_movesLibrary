@@ -1,15 +1,22 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MoveContext } from "../../utils/contexts/MoveContext";
 import { Button, TextField } from "@material-ui/core";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../utils/validation/yup";
 import { Link } from "react-router-dom";
+import SendIcon from "@material-ui/icons/Send";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 
 //style
 import "./enterMove.css";
 
 const EnterMove = () => {
+  //state
+  const [display, setDisplay] = useState("false");
+
+  //contexts
   const [moves, setMoves] = useContext(MoveContext);
 
   //constants
@@ -26,17 +33,24 @@ const EnterMove = () => {
     resolver: yupResolver(schema),
   });
 
+  //Functions
   const onSubmit = (data) => {
     setMoves((prevData) => [...prevData, data]);
+    if (Object.keys(errors).length <= 0) {
+      setDisplay(true);
+    }
   };
-
-  //useEffect
-  useEffect(() => {
-    console.log(moves);
-  }, [moves]);
 
   return (
     <>
+      <Alert
+        style={{ display: display == true ? "" : "none" }}
+        severity="success"
+        className="form"
+      >
+        <AlertTitle>Success</AlertTitle>
+        This is a success alert — <strong>check it out!</strong>
+      </Alert>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <Controller
           name="name"
@@ -83,7 +97,9 @@ const EnterMove = () => {
             />
           )}
         />
-        <button type="submit">submit</button>
+        <Button variant="contained" type="submit" endIcon={<SendIcon />}>
+          Add
+        </Button>
         <Button>
           <Link to="/">Return to see Moves </Link>
         </Button>
