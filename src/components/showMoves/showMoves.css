@@ -1,0 +1,23 @@
+.card {
+    padding: 20px;
+    background-color: gray;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    text-align: center;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.cardDiv {
+    background-color: #EEE;
+    padding: 40px;
+    max-width: 150px;
+    margin: 10px;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
